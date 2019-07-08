@@ -1,0 +1,645 @@
+﻿<div v-if="createWindow" v-on:click="createWindow=false" style="z-index:1000;cursor:default" class="kt-page-loader">
+</div>
+<div v-if="currentUser" class="w-100">
+    <div v-if="currentUser.InitialaTatalui" class="col-xl-12">
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">Detalii cont</h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Nume</label>
+                            <input v-model="currentUser.Nume" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Prenume</label>
+                            <input v-model="currentUser.Prenume" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Initiala tatalui</label>
+                            <input v-model="currentUser.InitialaTatalui" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input v-model="currentUser.Email" type="text" class="form-control">
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Nume profesor</label>
+                            <input v-model="currentUser.ProfesorNume" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Prenume profesor</label>
+                            <input v-model="currentUser.ProfesorPrenume" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Specializare</label>
+                            <input v-model="currentUser.SpecializareStudent" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Nivel studii</label>
+                            <input v-model="currentUser.NivelStudii" type="text" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Titlul lucrarii</label>
+                            <input v-model="currentUser.TitlulLucrarii" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stadiu lucrare</label>
+                            <input v-model="currentUser.StadiuLucrare" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+                        <button v-on:click=" UpdateStudent(currentUser)" type="button" class="btn btn-sm btn-success">Salveaza </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--end::Portlet-->
+
+    </div>
+
+
+    <div v-else class="col-md-12">
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">Lista studenti</h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div>
+                    <div class="row col-12" style="margin-bottom: 17px; background: #73bae67a; padding-top: 12px;">
+
+                        <div class="col-2 row" style="padding-left: 5%">Nume</div>
+                        <div class="col-2">Email</div>
+                        <div class="col-2">Facultate</div>
+                        <div class="col-2">Specializare</div>
+                        <div class="col-1">Nivel studii</div>
+                        <div class="col-1">Numele lucrarii</div>
+                        @*<th scope="col">Descarca lucrare</th>*@
+                        <div class="col-2">Stadiul lucrarii</div>
+
+                    </div>
+                    <div>
+                        <div class="row col-12" v-for="(student,index) in listaStudenti" @*style="background: #84dee57d;"*@>
+                            <div class="col-2 row">
+                                <div class="col-3">
+                                    <i class="fas fa-user-graduate" style="    font-size: 23px;  margin-top: 7px; color: #7171d1;"></i>
+                                </div>
+                                <div class="col-9">
+                                    {{student.Nume}} {{student.Prenume}} ({{student.InitialaTatalui}})
+                                </div>
+                            </div>
+                            <div class="col-2">{{student.Email}}</div>
+                            <div class="col-2">{{student.FacultateStudent}}</div>
+                            <div class="col-2">{{student.SpecializareStudent}}</div>
+                            <div class="col-1">{{student.NivelStudii}}</div>
+                            <div class="col-1">{{student.TitlulLucrarii}}</div>
+                            @*<td>
+                                    <a v-on:click="downloadFile(student)" href="#">
+                                        <span>{{student.Fisier[0].Name}}</span>
+
+                                    </a>
+                                </td>*@
+                            <div class="col-2 row">
+                                <div class="form-group col-8">
+                                    <input v-model="student.StadiuLucrare" type="text" class="form-control" placeholder="Stadiul lucrarii">
+                                </div>
+                                <div class="col-4">
+                                    <button v-on:click=" UpdateLicentaStatus(student)" type="button" class="btn btn-outline-success ">Salveaza </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="kt_quick_panel" class="kt-offcanvas-panel " v-bind:class="{'kt-offcanvas-panel--on' : createWindow == true}">
+    <div class="kt-offcanvas-panel__nav" kt-hidden-height="77" style="">
+        <h3 class="kt-demo-panel__title">
+            Detalii cont
+            <!--<small>5</small>-->
+        </h3>
+        <button v-on:click="createWindow=false" class="kt-offcanvas-panel__close" id="kt_quick_panel_close_btn"><i class="flaticon2-delete"></i></button>
+    </div>
+
+    <div class="kt-offcanvas-panel__body">
+
+
+        <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#" data-target="#kt_tabs_1_1">Profesor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#kt_tabs_1_4">Student</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="kt_tabs_1_1" role="tabpanel">
+                <div class="form-group">
+                    <label>Nume</label>
+                    <input v-model="createProfesor.Nume" type="text" class="form-control" placeholder="Nume">
+                </div>
+                <div class="form-group">
+                    <label>Prenume</label>
+                    <input v-model="createProfesor.Prenume" type="text" class="form-control" placeholder="Prenume">
+                </div>
+                <div class="form-group">
+                    <label>Facultate</label>
+                    <div class="btn-group w-100">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span v-if="!createProfesor.FacultateId">Selecteaza o facultate</span>
+                            {{createProfesor.NumeFacultate}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a v-for="facultate in listaFacultati" v-on:click="createProfesor.FacultateId= facultate.Id;createProfesor.NumeFacultate= facultate.Nume;Refresh()" class="dropdown-item pointer">{{facultate.Nume}}</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+                <button v-on:click="AddProfesor()" type="button" class="btn btn-success btn-sm">Adauga</button>
+                <button v-on:click="createProfesor={};createWindow=false" type="button" class="btn btn-danger btn-sm">Anuleaza</button>
+            </div>
+
+
+            <div class="tab-pane" id="kt_tabs_1_4" role="tabpanel">
+                <div class="form-group">
+                    <label>Nume</label>
+                    <input v-model="createStudent.Nume" type="text" class="form-control" placeholder="Nume">
+                </div>
+                <div class="form-group">
+                    <label>Prenume</label>
+                    <input v-model="createStudent.Prenume" type="text" class="form-control" placeholder="Prenume">
+                </div>
+                <div class="form-group">
+                    <label>Initiala tatalui</label>
+                    <input v-model="createStudent.InitialaTatalui" type="text" class="form-control" placeholder="Initiala tatalui">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input v-model="createStudent.Email" type="text" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label>Facultate</label>
+                    <div class="btn-group w-100">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span v-if="!createStudent.FacultateId">Selecteaza o facultate</span>
+                            {{createStudent.NumeFacultate}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a v-for="facultate in listaFacultati" v-on:click="addFacultate(facultate)" class="dropdown-item pointer">{{facultate.Nume}}</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Specializare</label>
+                    <div class="btn-group w-100">
+                        <button v-on:click="GetSpecializariByFacultateId(createStudent.FacultateId)" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span v-if="!createStudent.SpecializareId">Selecteaza o specializare</span>
+                            {{createStudent.NumeSpecializare}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a v-for="specializare in listaSpecializari" v-on:click="addSpecializare(specializare)" class="dropdown-item pointer">{{specializare.Nume}}</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Profesor</label>
+                    <div class="btn-group w-100">
+                        <button v-on:click="GetProfesorByFacultateId(createStudent.FacultateId)" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span v-if="!createStudent.ProfesorId">Selecteaza un profesor</span>
+                            {{createStudent.PrenumeProfesor}}
+                            {{createStudent.NumeProfesor}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a v-for="profesor in listaProfesori" v-on:click="addProfesor(profesor)" class="dropdown-item pointer">{{profesor.Prenume}} {{profesor.Nume}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleSelect1">Nivel Studii</label>
+                    <select v-model="createStudent.NivelStudii" class="form-control" id="exampleSelect1">
+                        <option value="Licenta">Licenta</option>
+                        <option value="Master">Master</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Titlul lucrarii</label>
+                    <input v-model="createStudent.TitlulLucrarii" type="text" class="form-control" placeholder="Titlul lucrarii">
+                </div>
+
+                <div class="form-group ">
+                    <div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_profile_avatar">
+                        <div class="kt-avatar__holder" style="background-image: url(./assets/media/users/300_21.jpg)"></div>
+                        <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+                            <i class="fa fa-pen"></i>
+                            @*<input type="file" name="profile_avatar">*@
+                            <input type="file" id="file" ref="file" v-on:change="onFileChange()">
+                        </label>
+                        <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                            <i class="fa fa-times"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+                <button v-on:click="AddStudent()" type="button" class="btn btn-success btn-sm">Adauga</button>
+                <button v-on:click="createStudent={};createWindow=false" type="button" class="btn btn-danger btn-sm">Anuleaza</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section scripts{
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                page: 'home',
+                createWindow: false,
+                createWindow2: false,
+                createProfesor: {},
+                createStudent: {},
+                currentUser: {},
+                listaFacultati: [],
+                listaSpecializari: [],
+                listaProfesori: [],
+                listaStudenti: [],
+                files: [],
+                file: 'empty',
+                uploadFile: {
+                    fileByteArray: 'file64',
+                    Name: 'File name',
+                    ReceivableCommentId: '0'
+
+                },
+            },
+            methods: {
+
+
+
+                addFacultate: function (facultate) {
+                    this.createStudent.FacultateId = facultate.Id;
+                    this.createStudent.NumeFacultate = facultate.Nume;
+                    this.createStudent.SpecializareId = '';
+                    this.createStudent.NumeSpecializare = '';
+                    this.createStudent.ProfesorId = '';
+                    this.createStudent.NumeProfesor = '';
+                    this.Refresh();
+                },
+                addSpecializare: function (specializare) {
+                    this.createStudent.SpecializareId = specializare.Id;
+                    this.createStudent.NumeSpecializare = specializare.Nume;
+                    this.Refresh();
+                },
+                addProfesor: function (profesor) {
+                    this.createStudent.ProfesorId = profesor.Id;
+                    this.createStudent.NumeProfesor = profesor.Prenume + profesor.Nume;
+                    this.Refresh();
+                },
+
+                AddStudent: function () {
+
+                    var student = {
+                        student: this.createStudent,
+                        uploadfile: this.uploadFile
+                    }
+                    this.$http.post('/Home/AddStudent', { student: student }).then(function (response) {
+                        if (response.body.Success == true) {
+
+                            swal(
+                                'Success!',
+                                'Datele au fost salvate!',
+                                'success'
+                            );
+                            this.GetCurrentUserById();
+
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Success!',
+                                'Datele au fost salvate!',
+                                'success'
+                            );
+                        }
+                    });
+
+                },
+                AddProfesor: function () {
+                    this.$http.post('/Home/AddProfesor', this.createProfesor).then(function (response) {
+                        if (response.body.Success == true) {
+
+                            swal(
+                                'Success!',
+                                'Datele au fost salvate!',
+                                'success'
+                            );
+                            this.GetCurrentUserById();
+
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Datele nu au putut fi salvate',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                UpdateLicentaStatus: function (student) {
+                    this.$http.post('/Home/UpdateLicentaStatus', student).then(function (response) {
+                        if (response.body.Success == true) {
+
+                            swal(
+                                'Success!',
+                                'Datele au fost salvate!',
+                                'success'
+                            );
+
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Datele nu au putut fi salvate',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+                UpdateStudent: function (student) {
+                    this.$http.post('/Home/UpdateStudent', student).then(function (response) {
+                        if (response.body.Success == true) {
+
+                            swal(
+                                'Success!',
+                                'Datele au fost salvate!',
+                                'success'
+                            );
+
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Datele nu au putut fi salvate',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                GetCurrentUserById: function () {
+                    this.$http.get('/Home/GetCurrentUserById').then(function (response) {
+                        if (response.body.Success == true) {
+                            if (response.body.Object.length == 0) {
+                                this.createWindow = true;
+                            }
+                            this.currentUser = response.body.Object[0]
+                            if (!this.currentUser.InitialaTatalui) {
+                                this.GetStudentByProfesorId()
+                            }
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Facultatea nu a putut fi inregistrata',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                GetListaFacultati: function () {
+                    this.$http.post('/Administrator/GetListaFacultati').then(function (response) {
+                        if (response.body.Success == true) {
+                            this.listaFacultati = response.body.Object
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                GetStudentByProfesorId: function () {
+                    this.$http.post('/Home/GetStudentByProfesorId').then(function (response) {
+                        if (response.body.Success == true) {
+                            this.listaStudenti = response.body.Object;
+                            console.log(this.listaStudenti);
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                GetProfesorByFacultateId: function (idFacultate) {
+                    this.$http.post('/Home/GetProfesorByFacultate', { idFacultate: idFacultate }).then(function (response) {
+                        if (response.body.Success == true) {
+                            this.listaProfesori = response.body.Object
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+                GetSpecializariByFacultateId: function (idFacultate) {
+                    this.$http.post('/Home/GetSpecializariByFacultateId', { idFacultate: idFacultate }).then(function (response) {
+                        if (response.body.Success == true) {
+                            this.listaSpecializari = response.body.Object
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+
+                fileExtValidate: function (fileName) {
+                    var validExt = ".doc, .docx";
+                    var filePath = fileName;
+                    var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+                    var pos = validExt.indexOf(getFileExt);
+                    if (pos < 0) {
+                        swal({
+                            position: 'top-end',
+                            type: 'error',
+                            text: 'Sorry.',
+                            title: 'This file is not allowed, please upload valid file.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                    } else {
+                        this.uploadFile.fileByteArray = this.file;
+                        this.uploadFile.Name = fileName;
+                        this.uploadFile.IdStudent = '';
+
+                        //if (this.commentWithAttachment == false) {
+                        //    this.upload(fileName)
+                        //}
+                        //else {
+                        //}
+                    }
+                },
+
+                downloadFile: function (attach) {
+                    this.$http.post('/Home/GetAttachament?receivableAttachemntId=' + attach.Fisier[0].Id).then(function (response) {
+                        var blob = this.b64toBlob(response.body.Object.FileBytes, response.body.Object.FileType);
+                        if (window.navigator.msSaveOrOpenBlob) {
+                            window.navigator.msSaveBlob(blob, response.body.Object.FileName);
+                        }
+                        else {
+                            const linkSource = response.body.Object.FileType + ',' + response.body.Object.FileBytes;
+                            const downloadLink = document.createElement("a");
+                            const fileName = response.body.Object.FileName;
+
+                            downloadLink.href = linkSource;
+                            downloadLink.download = fileName;
+                            downloadLink.click();
+                        }
+                    });
+                },
+
+                b64toBlob: function (b64Data, contentType, sliceSize) {
+
+                    var b64Data2 = arrayBufferToBase64(b64Data)
+
+
+                    function arrayBufferToBase64(b64Data) {
+                        let binary = '';
+                        let bytes = new Uint8Array(b64Data);
+                        let len = bytes.byteLength;
+                        for (let i = 0; i < len; i++) {
+                            binary += String.fromCharCode(bytes[i]);
+                        }
+                        return window.btoa(binary);
+                    }
+
+
+
+                    contentType = contentType || '';
+                    sliceSize = sliceSize || 512;
+
+                    var byteCharacters = atob(b64Data2);
+                    var byteArrays = [];
+
+                    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                        var byteNumbers = new Array(slice.length);
+                        for (var i = 0; i < slice.length; i++) {
+                            byteNumbers[i] = slice.charCodeAt(i);
+                        }
+
+                        var byteArray = new Uint8Array(byteNumbers);
+
+                        byteArrays.push(byteArray);
+                    }
+
+                    var blob = new Blob(byteArrays, { type: contentType });
+                    return blob;
+                },
+
+                onFileChange: function () {
+                    var input = event.target;
+
+                    if (input.files && input.files[0]) {
+                        var fileName = input.files[0].name
+                        var reader = new FileReader();
+                        //if (input.files[0].size > 3000000) {
+                        //    swal({
+                        //        position: 'top-end',
+                        //        type: 'error',
+                        //        title: 'Sorry',
+                        //        text: 'File is to big',
+                        //        showConfirmButton: false,
+                        //        timer: 2000
+                        //    })
+                        //}
+                        //else {
+                        reader.onload = function (e) {
+                            app.file = e.target.result;
+                            app.fileExtValidate(fileName);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                        //}
+                    }
+                },
+
+
+
+                Refresh: function () {
+                    this.$forceUpdate();
+                },
+            },
+            created: function () {
+                this.GetListaFacultati();
+                this.GetCurrentUserById();
+            }
+        })
+    </script>
+}

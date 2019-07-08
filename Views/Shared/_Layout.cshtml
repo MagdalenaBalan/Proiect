@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+
+<!--
+Theme: Keen - The Ultimate Bootstrap Admin Theme
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: You must have a valid license purchased only from https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/ in order to legally use the theme for your project.
+-->
+<html lang="en">
+
+<!-- begin::Head -->
+<head>
+
+    <!--begin::Base Path (base relative path for assets of this page) -->
+    <base href="../">
+
+    <!--end::Base Path -->
+    <meta charset="utf-8" />
+    <title>USV</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--begin::Fonts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {da, cook
+                "families": ["Poppins:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.42/polyfill.js"><\/script>');
+    </script>
+
+    <!--Vue js-->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-upload-component"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-focus/2.1.0/vue-focus.js"></script>
+    <script src="https://unpkg.com/vue-dragscroll"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!--end::Fonts -->
+    <!--begin::Page Vendors Styles(used by this page) -->
+    <link href="./Assets/keen/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Page Vendors Styles -->
+    <!--begin:: Global Mandatory Vendors -->
+    <link href="./Assets/keen/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+    <!--end:: Global Mandatory Vendors -->
+    <!--begin:: Global Optional Vendors -->
+    <link href="~/Assets/keen/css/demo3/pages/custom/general/blog/list.css" rel="stylesheet" />
+    <link href="~/Assets/keen/css/demo3/pages/custom/general/user/login-v2.css" rel="stylesheet" />
+    <link href="~/Assets/keen/css/demo3/pages/custom/general/user/login-v2.min.css" rel="stylesheet" />
+    <link href="~/Assets/keen/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/keen/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/keen/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/keen/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="./Assets/keen/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    @*<link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />*@
+
+    <!--end:: Global Optional Vendors -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="./Assets/keen/css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
+    @*<link href="./Assets/keen/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />*@
+
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="./Assets/keen/media/logos/favicon.ico" />
+</head>
+
+<!-- end::Head -->
+<!-- begin::Body -->
+<body class="kt-page--fixed kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
+
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <a href="@Url.Action("Index", "Home")">
+                <img alt="Logo" src="./Assets/keen/media/logos/logo-5.png" />
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+        </div>
+    </div>
+
+    <!-- end:: Header Mobile -->
+    <div id="app" class="kt-grid kt-grid--hor kt-grid--root">
+        @*<div v-if="loader==true" class="kt-page-loader2">
+                <div class="kt-spinner kt-spinner--brand"></div>
+            </div>*@
+        <!-- begin::Page loader -->
+      
+
+
+        <!-- end::Page Loader -->
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper " id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed " data-ktheader-minimize="on" style="background-image: url(./Assets/keen/media/layout/footer-bg-demo3.jpg)">
+                    <div class="kt-header__top">
+                        <div class="kt-container">
+
+                            <!-- begin:: Brand -->
+                            <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
+                                <div class="kt-header__brand-logo">
+                                    <a href="@Url.Action("Index", "Home")">
+
+                                        <img alt="Logo" src="./Assets/keen/media/logos/logo-7.png" class="kt-header__brand-logo-default" />
+                                        <img alt="Logo" src="./Assets/keen/media/logos/logo-5.png" class="kt-header__brand-logo-sticky" />
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kt-header__bottom">
+                        <div class="kt-container">
+
+
+                            <!-- begin: Header Menu -->
+                            <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                            <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper" style="opacity: 1;">
+                                <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
+
+                                    <ul class="kt-menu__nav ">
+
+                                        <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+                                            <a href="@Url.Action("Index", "Administrator")" class="kt-menu__link ">
+                                                <span class="kt-menu__link-text"> Lista facultati</span>
+                                            </a>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div  class="kt-header-toolbar">
+                                    <a v-if="page=='home' && currentUser" href="#" style="text-transform:none; font-weight:400" class="btn btn-wide btn-bold btn-info btn-upper">Salut, {{currentUser.Prenume}} {{currentUser.Nume}}</a>
+                                    @Html.Partial("_LoginPartial")
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end:: Header -->
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch">
+                    <div class="kt-container kt-body  kt-grid kt-grid--ver" id="kt_body">
+                        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+                            <!-- begin:: Subheader -->
+                            <!-- end:: Subheader -->
+                            <!-- begin:: Content -->
+                            <div class="kt-content kt-grid__item kt-grid__item--fluid">
+                                <div  class="kt-subheader   kt-grid__item" id="kt_subheader">
+                                    <div class="kt-subheader__main">
+                                        @*<span class="kt-subheader__separator kt-hidden"></span>
+                                        <div class="kt-subheader__breadcrumbs">
+                                            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                                            <a href="" class="kt-subheader__breadcrumbs-link">
+                                            </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                                            <a href="" class="kt-subheader__breadcrumbs-link">
+                                            </a>
+
+                                        </div>*@
+                                    </div>
+                                    <div class="kt-subheader__toolbar">
+                                        <div v-if="page=='admin'" class="kt-subheader__wrapper">
+                                            <button v-on:click="createWindow=true" type="button" class="btn btn-primary btn-sm">Adauga facultate</button>
+                                            <button v-if="currentFacultate.Nume" v-on:click="createWindow2=true" type="button" class="btn btn-primary btn-sm">Adauga specializare</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--begin::Dashboard 4-->
+                                <!--begin::Row-->
+                                <div class="row">
+                                    @RenderBody()
+
+                                </div>
+                                <!--end::Row-->
+                                <!--end::Dashboard 4-->
+                            </div>
+
+                            <!-- end:: Content -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- begin:: Footer -->
+                <div class="kt-footer kt-grid__item" style="background-image: url(./Assets/keen/media/layout/footer-bg-demo3.jpg)" id="kt_footer">
+                </div>
+
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#4d5cf2",
+                    "metal": "#c4c5d6",
+                    "light": "#ffffff",
+                    "accent": "#00c5dc",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995",
+                    "focus": "#9816f4"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
+                }
+            }
+        };
+    </script>
+
+    <!-- end::Global Config -->
+    <!--begin:: Global Mandatory Vendors -->
+    <script src="./Assets/keen/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/moment/min/moment.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/tooltip.js/dist/umd/tooltip.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
+    <!--end:: Global Mandatory Vendors -->
+    <!--begin:: Global Optional Vendors -->
+    <script src="./Assets/keen/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/block-ui/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-select/dist/js/bootstrap-select.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/typeahead.js/dist/typeahead.bundle.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/handlebars/dist/handlebars.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/inputmask/dist/jquery.inputmask.bundle.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/nouislider/distribute/nouislider.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/owl.carousel/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/autosize/dist/autosize.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/clipboard/dist/clipboard.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/dropzone/dist/dropzone.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/summernote/dist/summernote.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/markdown/lib/markdown.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/js/vendors/bootstrap-markdown.init.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/js/vendors/jquery-validation.init.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/raphael/raphael.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/morris.js/morris.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/chart.js/dist/Chart.bundle.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/waypoints/lib/jquery.waypoints.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/counterup/jquery.counterup.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/es6-promise-polyfill/promise.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/custom/js/vendors/sweetalert2.init.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery.repeater/src/lib.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
+    <script src="./Assets/keen/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
+
+    @*<script src="~/Assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Assets/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/Assets/js/perfect-scrollbar.min.js" type="text/javascript"></script>
+    <script src="~/Assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Assets/js/moment.js"></script>
+    <!--  Forms Validations Plugin -->
+    <script src="~/Assets/js/jquery.validate.min.js"></script>
+    <!-- Promise Library for SweetAlert2 working on IE -->
+    <script src="~/Assets/js/es6-promise-auto.min.js"></script>
+
+    <script src="~/Assets/js/bootstrap-notify.js"></script>
+
+    @*<script src="~/Assets/js/sweetalert2.js"></script>*@
+
+    <script src="~/Assets/js/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/Assets/js/jquery-loading.js"></script>
+    <script src="~/Assets/js/paper-dashboard.js"></script>
+    <script src="~/Assets/js/site.js"></script>
+
+    <!--end:: Global Optional Vendors -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="./Assets/keen/js/demo3/scripts.bundle.js" type="text/javascript"></script>
+
+    <!--end::Global Theme Bundle -->
+    <!--begin::Page Vendors(used by this page) -->
+    <script src="./Assets/keen/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+
+    <!--end::Page Vendors -->
+    <!--begin::Page Scripts(used by this page) -->
+    <script src="./Assets/keen/js/demo1/pages/dashboard.js" type="text/javascript"></script>
+    <script src="~/Assets/js/site.js"></script>
+    <!--end::Page Scripts -->
+    @RenderSection("scripts", required: false)
+</body>
+
+<!-- end::Body -->
+</html>

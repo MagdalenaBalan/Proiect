@@ -1,0 +1,209 @@
+﻿<div v-if="createWindow" v-on:click="createWindow=false" style="z-index:1000;cursor:default" class="kt-page-loader">
+</div>
+
+<div class="col-md-6">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Lista facultati</h3>
+            </div>
+        </div>
+    </div>
+    <div v-for="facultate in listaFacultati" class="kt-portlet  kt-widget-12" v-bind:class="{'shadow':facultate.Id== currentFacultate.Id}">
+
+        <div class="kt-portlet__body">
+            <div class="kt-widget-12__body">
+                <div class="kt-widget-12__head">
+                    <div v-on:click="currentFacultate=facultate;GetListaSpecializari();" class="kt-widget-12__date pointer  kt-widget-12__date_small kt-widget-12__date--success"v-bind:class="{'kt-widget-12__date--danger':facultate.Id== currentFacultate.Id}">
+                        <span class="kt-widget-12__day"><i class="fas fa-university"></i></span>
+                    </div>
+                    <div class="kt-widget-12__label">
+                        <h3 class="kt-widget-12__title" style="font-size:1.1rem">{{facultate.Nume}}</h3>
+                        @*<button type="button" class="btn btn-outline-hover-danger btn-sm btn-icon float-right ">
+                            <i class="far fa-trash-alt "></i>
+                        </button>
+                        <button v-on:click="currentFacultate=facultate;GetListaSpecializari();" type="button" class="btn btn-outline-hover-info btn-sm btn-icon float-right ">
+                            <i class="fas fa-info-circle"></i>
+                        </button>*@
+                    </div>
+                </div>
+                <div class="kt-widget-12__info">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Lista specializarilor de la {{currentFacultate.Nume}}</h3>
+            </div>
+        </div>
+
+    </div>
+    <div v-for="specializare in listaSpecializari" class="kt-portlet  kt-widget-12">
+        <div class="kt-portlet__body">
+            <div class="kt-widget-12__body">
+                <div class="kt-widget-12__head">
+                    <div class="kt-widget-12__date  kt-widget-12__date_small pointer kt-widget-12__date--success">
+                        <span class="kt-widget-12__day"><i class="fas fa-graduation-cap"></i></span>
+                    </div>
+                    <div class="kt-widget-12__label">
+                        <h3 class="kt-widget-12__title "style="font-size:1.1rem">{{specializare.Nume}}</h3>
+                    </div>
+                </div>
+                <div class="kt-widget-12__info">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="kt_quick_panel" class="kt-offcanvas-panel " v-bind:class="{'kt-offcanvas-panel--on' : createWindow == true}">
+    <div class="kt-offcanvas-panel__nav" kt-hidden-height="77" style="">
+        <h5>Adauga o noua facultate</h5>
+
+        <button v-on:click="createWindow=false" class="kt-offcanvas-panel__close" id="kt_quick_panel_close_btn"><i class="flaticon2-delete"></i></button>
+    </div>
+
+    <div class="kt-offcanvas-panel__body">
+
+        <div class="form-group">
+            <label> Numele facultatii</label>
+            <input v-model="createFacultate.Nume" type="text" class="form-control" placeholder="Numele facultatii">
+        </div>
+        <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+        <button v-on:click="AddFacultate()" type="button" class="btn btn-success btn-sm">Adauga</button>
+        <button v-on:click="createFacultate={};createWindow=false" type="button" class="btn btn-danger btn-sm">Anuleaza</button>
+    </div>
+</div>
+
+<div id="kt_quick_panel" class="kt-offcanvas-panel " v-bind:class="{'kt-offcanvas-panel--on' : createWindow2 == true}">
+    <div class="kt-offcanvas-panel__nav" kt-hidden-height="77" style="">
+        <h5>Adauga o specializare pentru {{currentFacultate.Nume}}</h5>
+
+        <button v-on:click="createWindow2=false" class="kt-offcanvas-panel__close" id="kt_quick_panel_close_btn"><i class="flaticon2-delete"></i></button>
+    </div>
+
+    <div class="kt-offcanvas-panel__body">
+
+        <div class="form-group">
+            <label> Numele Specializarii</label>
+            <input v-model="createSpecializare.Nume" type="text" class="form-control" placeholder="Numele specializarii">
+        </div>
+        <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+        <button v-on:click="AddSpecializare()" type="button" class="btn btn-success btn-sm">Adauga</button>
+        <button v-on:click="createSpecializare={};createWindow2=false" type="button" class="btn btn-danger btn-sm">Anuleaza</button>
+    </div>
+</div>
+
+
+@section scripts{
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                page:'admin',
+                createFacultate: {},
+                createWindow: false,
+                createWindow2: false,
+                listaFacultati: [],
+                listaSpecializari: [],
+                currentFacultate: {},
+                createSpecializare: {},
+            },
+            methods: {
+                AddFacultate: function () {
+                    this.loader = true;
+                    this.groupType = 'Groups'
+                    this.$http.post('/Administrator/AddFacultate', this.createFacultate).then(function (response) {
+                        if (response.status == 200) {
+                            this.GetListaFacultati();
+                            swal(
+                                'Success!',
+                                'O noua facultate a fost inregistrata!',
+                                'success'
+                            );
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Facultatea nu a putut fi inregistrata',
+                                'error'
+                            );
+                        }
+                        this.loader = false;
+                    });
+
+                },
+                AddSpecializare: function () {
+                    this.loader = true;
+                    this.createSpecializare.FacultateId = this.currentFacultate.Id;
+                    this.$http.post('/Administrator/AddSpecializare', this.createSpecializare).then(function (response) {
+                        if (response.status == 200) {
+                            this.GetListaSpecializari();
+                            swal(
+                                'Success!',
+                                'O noua specializare a fost inregistrata!',
+                                'success'
+                            );
+                            this.createWindow = false;
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Specializarea nu a putut fi inregistrata',
+                                'error'
+                            );
+                        }
+                        this.loader = false;
+                    });
+
+                },
+                GetListaFacultati: function () {
+                    this.loader = true;
+                    this.$http.post('/Administrator/GetListaFacultati').then(function (response) {
+                        if (response.status == 200) {
+                            this.listaFacultati = response.body.Object
+                            console.log(response)
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+                GetListaSpecializari: function () {
+                    this.loader = true;
+                    this.$http.post('/Administrator/GetListaSpecializari', { facultateId: this.currentFacultate.Id }).then(function (response) {
+                        if (response.status == 200) {
+                            this.listaSpecializari = response.body.Object
+                            console.log(response)
+                        }
+                        else {
+                            swal(
+                                'Error!',
+                                'Nu se poate gasi lista!',
+                                'error'
+                            );
+                        }
+                    });
+
+                },
+            },
+            created: function () {
+                this.GetListaFacultati()
+            }
+        })
+    </script>
+}

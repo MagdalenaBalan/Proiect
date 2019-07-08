@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="434becf4ea0b4c82950229dc65d3d80f" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9.5" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.Facultati" Width="1.5" PointX="6" PointY="1.125" />
+        <EntityTypeShape EntityType="Model.Fisiere" Width="1.5" PointX="12.75" PointY="4.875" />
+        <EntityTypeShape EntityType="Model.Profesori" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="Model.Specializari" Width="1.5" PointX="8.25" PointY="0.875" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_Profesor_To_AspNetUser" />
+        <AssociationConnector Association="Model.FK_Profesor_To_Facultate" />
+        <AssociationConnector Association="Model.FK_Specialziare_To_Facultate" />
+        <AssociationConnector Association="Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="Model.Studenti" Width="1.5" PointX="10.5" PointY="2.5" />
+        <AssociationConnector Association="Model.FK_Studenti_To_Users" />
+        <AssociationConnector Association="Model.FK_Fisier_Student" />
+        <AssociationConnector Association="Model.FK_Studenti_To_Profesor" />
+        <AssociationConnector Association="Model.FK_Studenti_To_Facultate" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
